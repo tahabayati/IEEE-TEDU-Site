@@ -4,7 +4,7 @@ import { backblazeConfig } from "../../../lib/service-config.mjs";
 
 // Serves files from the private B2 bucket. Keys are content-hashed, so a key's bytes never
 // change and the response can be cached forever by browsers and the Vercel CDN.
-const ALLOWED = /^team\/[a-f0-9]{64}\.webp$/;
+const ALLOWED = /^(team|blog)\/[a-f0-9]{64}\.webp$/;
 
 export async function GET(_request, { params }) {
   const key = (await params).key.join("/");

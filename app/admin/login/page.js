@@ -8,12 +8,12 @@ export default async function LoginPage({ searchParams }) {
   const { error } = await searchParams;
   return (
     <div className={styles.card}>
-      <h1>Admin login</h1>
-      {error && <p className={styles.msg} role="alert">Wrong username or password.</p>}
+      <h1>Yönetici girişi</h1>
+      {error && <p className={styles.msg} role="alert">{error === "locked" ? "Çok fazla deneme. 10 dakika sonra tekrar deneyin." : "Kullanıcı adı veya şifre hatalı."}</p>}
       <form action={loginAction}>
-        <label>Username<input name="username" autoComplete="username" required /></label>
-        <label>Password<input name="password" type="password" autoComplete="current-password" required /></label>
-        <button>Log in</button>
+        <label>Kullanıcı adı<input name="username" autoComplete="username" required /></label>
+        <label>Şifre<input name="password" type="password" autoComplete="current-password" required /></label>
+        <button>Giriş yap</button>
       </form>
     </div>
   );

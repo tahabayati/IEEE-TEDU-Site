@@ -154,3 +154,6 @@ textarea.input {
   .input { font-size: 1rem; min-height: 48px; }
   .backLink { left: var(--page-gutter); min-height: 44px; }
 }
+
+.error { color: #b3261e; margin-bottom: 1rem; }
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
