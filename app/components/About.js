@@ -5,9 +5,9 @@ export default function About() {
     <section id="about" className={styles.about} data-dark-bg>
       <div className="container reveal">
         <h2 className="section-title">Biz Kimiz?</h2>
-        <h3 className={styles.highlight}>
+        <p className={styles.highlight}>
           IEEE TEDU, teknolojiyi insanlık yararına ilerletmeye odaklanmış kolektif bir merkezdir. İnovasyon, liderlik ve dinamik bir öğrenci topluluğuyla akademik teoriyi gerçek dünyanın etkisiyle buluşturuyoruz.
-        </h3>
+        </p>
         <div className={styles.textGrid}>
           <p>
             IEEE(Institute of Electrical and Electronics Engineers), 160 ülkede, 400,000’den fazla üyesi ile dünyanın en büyük kar amacı gütmeyen profesyonel teknik organizasyonlarından biridir. IEEE sadece elektrik, elektronik mühendislerine yönelik olmaktan çıkarak bilişim, otomasyon, robotik gibi pek çok mühendislik ve bilim alanında teori ve uygulamalarının gelişimi için çalışmalar yapmanın yanı sıra, bu amaca hizmet etmek isteyen herkes için dünya çapında çeşitli eğitimler ve etkinlikler organize etmektedir.

@@ -118,3 +118,17 @@
     gap: 1.5rem;
   }
 }
+
+.header { padding-top: 12rem; }
+.content { min-width: 0; }
+@media (max-width: 1023px) {
+  .header { padding: 8rem var(--page-gutter) 2rem; text-align: left; }
+  .title { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; }
+  .subtitle { font-size: 1.1rem; }
+  .list { padding: 0 var(--page-gutter) 4rem; }
+  .card { flex-direction: column; border-radius: 16px; }
+  .image { flex-basis: 140px; }
+  .content { padding: 1.5rem; }
+  .cardTitle { font-size: 1.65rem; line-height: 1.2; }
+  .excerpt { font-size: 1rem; }
+}

@@ -1,5 +1,6 @@
 .hero {
-  min-height: 100vh;
+  position: relative;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +9,8 @@
   padding-bottom: 5rem;
   background-color: var(--bg-light);
 }
+
+.hero :global(.container) { width: 100%; }
 
 .title {
   font-size: clamp(3rem, 8vw, 7.5rem);
@@ -41,14 +44,14 @@
   color: var(--text-muted);
   font-weight: 400;
   max-width: 700px;
-  margin: 30vh auto 0;
+  margin: 2.5rem 0 0;
 }
 
 .buttonWrap {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .button {
@@ -77,20 +80,12 @@
   }
 }
 
-@media (max-width: 900px) {
-  .hero {
-    padding-top: 10rem;
-  }
-  .title {
-    font-size: clamp(2.5rem, 12vw, 5rem);
-  }
-  .subtitle {
-    margin-top: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .buttonWrap {
-    display: none;
-  }
+@media (max-width: 1023px) {
+  .hero { min-height: auto; padding: 8rem 0 4.5rem; }
+  .title { font-size: clamp(2rem, 9.7vw, 5rem); line-height: 1.03; padding-bottom: 0; margin-bottom: 2rem; }
+  .word { letter-spacing: -.055em; }
+  .accent { margin: 0; }
+  .subtitle { margin: 0; font-size: clamp(1.1rem, 2.6vw, 1.45rem); line-height: 1.65; max-width: 38rem; }
+  .buttonWrap { margin-top: 1.75rem; }
+  .scrollIndicator { display: none; }
 }

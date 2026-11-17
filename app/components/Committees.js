@@ -41,9 +41,10 @@ export default function Committees() {
   return (
     <section id="committees" className={styles.committees}>
       <div className={styles.container}>
+        <h2 className="section-title reveal">Komiteler</h2>
         <div className={`${styles.switcher} reveal`}>
           {COMMITTEES.map((c, i) => (
-            <button key={c.id} className={styles.tab} data-com-tab={c.id} data-active={i === 0 || undefined}>
+            <button key={c.id} className={styles.tab} data-com-tab={c.id} aria-controls={c.id} aria-pressed={i === 0} data-active={i === 0 || undefined}>
               {c.tab}
             </button>
           ))}
@@ -52,22 +53,22 @@ export default function Committees() {
         <div className={`${styles.grid} reveal`}>
           {COMMITTEES.map((c, i) => (
             <div key={c.id} id={c.id} className={styles.wrapper} data-active={i === 0 || undefined}>
-              <div className={styles.card}>
-                <div className={styles.logo}>
-                  <img src={c.logo} alt={c.alt} />
-                </div>
-                <div className={styles.overlay}>
+              <details className={styles.card}>
+                <summary className={styles.summary}>
+                  <div className={styles.logo}>
+                    <img src={c.logo} alt={c.alt} />
+                  </div>
                   <div className={styles.header}>
                     <h3 className={styles.title}>{c.title}</h3>
                     <div className={styles.iconWrap}>
                       <span className={styles.plus}></span>
                     </div>
                   </div>
-                  <div className={styles.description}>
-                    {c.text.map((t) => <p key={t}>{t}</p>)}
-                  </div>
+                </summary>
+                <div className={styles.description}>
+                  {c.text.map((t) => <p key={t}>{t}</p>)}
                 </div>
-              </div>
+              </details>
             </div>
           ))}
         </div>

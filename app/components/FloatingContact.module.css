@@ -14,7 +14,8 @@
   overflow: hidden; /* enables the white slide-in background */
   transition:
     transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    box-shadow 0.3s;
+    box-shadow 0.3s,
+    background-color 0.3s;
 }
 
 .button::before {
@@ -51,6 +52,7 @@
   width: 100%;
 }
 .button[data-dark] {
+  background: var(--white);
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
 }
 .button[data-dark] .title {
@@ -71,4 +73,9 @@
   .title {
     font-size: 1rem;
   }
+}
+
+@media (max-width: 1023px) {
+  .button { right: var(--page-gutter); bottom: calc(16px + env(safe-area-inset-bottom)); padding: .9rem 1.25rem; min-height: 48px; }
+  .title { font-size: .85rem; letter-spacing: .03em; }
 }

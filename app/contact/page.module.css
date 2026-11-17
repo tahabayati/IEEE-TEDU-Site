@@ -145,3 +145,12 @@ textarea.input {
     margin-top: 0.5rem;
   }
 }
+
+@media (max-width: 768px) {
+  .page { padding: 6rem var(--page-gutter) 3rem; }
+  .container { padding: 1.5rem; }
+  .header { text-align: left; }
+  .title { font-size: clamp(1.75rem, 7vw, 2.2rem); line-height: 1.15; }
+  .input { font-size: 1rem; min-height: 48px; }
+  .backLink { left: var(--page-gutter); min-height: 44px; }
+}

@@ -98,3 +98,24 @@ h4 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Shared responsive frame and keyboard/touch defaults. */
+:root { --page-gutter: clamp(20px, 5vw, 72px); }
+.container { padding-inline: var(--page-gutter); }
+html { scroll-padding-top: 120px; }
+img, svg { max-width: 100%; }
+button, input, textarea, select { font: inherit; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #168dc2; outline-offset: 5px; }
+section[id] { scroll-margin-top: 16px; }
+/* Content remains readable before hydration or if JavaScript is unavailable. */
+.reveal { opacity: 1; transform: none; }
+@media (max-width: 1023px) {
+  html { scroll-padding-top: 88px; }
+  .section-title { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1.5rem; }
+  .btn { min-height: 48px; padding: .8rem 1.75rem; font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

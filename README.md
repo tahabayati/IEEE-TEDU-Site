@@ -8,7 +8,7 @@ Built with Next.js (App Router) and JavaScript. Team data is stored in MongoDB a
 
 The first version of this website was designed and built by [Ömer Harmankaya](https://github.com/OmerHarmankayaC):
 [OmerHarmankayaC/IEEE-WebSite](https://github.com/OmerHarmankayaC/IEEE-WebSite).
-This version moves it to Next.js and keeps the original design.
+This version moves it to Next.js and retains the original IEEE palette, typography and content, with responsive layouts for phones and tablets.
 
 ## Running locally
 
@@ -76,3 +76,14 @@ The password itself is never stored. To reset it, repeat step 1 and replace `pas
 1. Import the repository in Vercel (Next.js preset, default settings).
 2. Add the environment variables above before the first deploy. The build reads team data from the database.
 3. In MongoDB Atlas, allow connections from anywhere (`0.0.0.0/0`) under Network Access, since Vercel has no fixed IP addresses.
+
+## Responsive behavior
+
+- Below 1024px, the full navigation opens from “Menü”; it closes after selecting a link, clicking outside or pressing Escape.
+- Committee cards use native disclosures for touch and keyboard access. Below 1024px, CS/RAS/WIE buttons select a committee; without JavaScript, all three cards remain available.
+- Activities and team members scroll horizontally with snap points. Mobile cards retain readable widths instead of squeezing every person into one row.
+- Team leaders use a two-column layout on phones and tablets. Group buttons support keyboard activation and expose their selected state.
+- The hero action remains available on phones. The blog list, all five articles and contact form share responsive spacing and readable input sizes.
+- Content is visible before JavaScript loads. Scroll entrances respect reduced motion, and anchor links account for the fixed header.
+
+Validation notes are in [docs/responsive-review.md](docs/responsive-review.md).

@@ -50,7 +50,7 @@ export default function TeamSection({ years }) {
         {years.length > 1 && (
           <div className={`${styles.yearSwitcher} reveal`}>
             {years.map((y) => (
-              <button key={y.id} className={styles.yearButton} data-year={y.id} data-active={y.id === current || undefined}>
+              <button key={y.id} className={styles.yearButton} data-year={y.id} aria-pressed={y.id === current} data-active={y.id === current || undefined}>
                 {y.id}
               </button>
             ))}
@@ -84,7 +84,7 @@ export default function TeamSection({ years }) {
                       <p className={styles.leaderName}>{g.leader?.name ?? TBA}</p>
                     </div>
                     <div className={styles.tabBox}>
-                      <button className={styles.tabName}>{g.name}</button>
+                      <button className={styles.tabName} aria-pressed={i === 0}>{g.name}</button>
                     </div>
                   </div>
                 ))}
@@ -106,6 +106,10 @@ export default function TeamSection({ years }) {
             ))}
           </div>
         ))}
+        <div className={styles.hint} id="team-hint" aria-hidden="true">
+          <span className={styles.hintText}>Kaydır {chevron("9 18 15 12 9 6")}</span>
+          <div className={styles.track}><i id="team-progress" /></div>
+        </div>
         <button className={`${styles.navButton} ${styles.prev}`} id="team-prev-btn" aria-label="Önceki">{chevron("15 18 9 12 15 6")}</button>
         <button className={`${styles.navButton} ${styles.next}`} id="team-next-btn" aria-label="Sonraki">{chevron("9 18 15 12 9 6")}</button>
       </div>
