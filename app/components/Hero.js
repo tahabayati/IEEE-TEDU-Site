@@ -18,8 +18,9 @@ export default function Hero() {
         </div>
       </div>
       <div className={`${styles.scrollIndicator} reveal`}>
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 5v14M19 12l-7 7-7-7" />
+        <svg width="42" height="57" viewBox="36 29 28 38" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path className={styles.arrowA} d="M40 31.83L50 39.33L60 31.83" />
+          <path className={styles.arrowB} d="M40 50.67L50 58.17L60 50.67" />
         </svg>
       </div>
     </section>

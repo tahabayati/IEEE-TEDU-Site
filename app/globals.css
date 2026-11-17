@@ -31,6 +31,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Page still scrolls, but the bar is hidden so it never takes layout width (Windows/Linux). */
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {

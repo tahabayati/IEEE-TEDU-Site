@@ -65,19 +65,26 @@
   transform: translateX(-50%);
   color: var(--ted-navy);
   pointer-events: none;
-  animation: bounce 2s infinite ease-in-out;
-  opacity: 0.7;
   z-index: 5;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, 15px);
-  }
+/* "Scroll Down Arrows" Lottie, redrawn as two chevrons so no player library is shipped (2s loop). */
+.arrowA { animation: arrowA 2.03s infinite; }
+.arrowB { animation: arrowB 2.03s infinite; }
+.arrowA, .arrowB { opacity: 0; }
+
+@keyframes arrowA {
+  0% { opacity: 0; transform: translateY(0); }
+  33% { opacity: 1; transform: translateY(6.67px); }
+  72%, 100% { opacity: 0; transform: translateY(6.67px); }
+}
+@keyframes arrowB {
+  0%, 33% { opacity: 0; transform: translateY(0); }
+  66% { opacity: 1; transform: translateY(3.33px); }
+  98%, 100% { opacity: 0; transform: translateY(3.33px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrowA, .arrowB { animation: none; opacity: 0.7; }
 }
 
 @media (max-width: 1023px) {

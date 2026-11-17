@@ -10,8 +10,17 @@
 .logo { display: block; height: 100px; width: auto; mix-blend-mode: multiply; transition: height .3s ease; }
 .navbar[data-scrolled] .logo { height: 72px; }
 .links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.5rem); list-style: none; }
-.links a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--ted-navy); font-weight: 600; white-space: nowrap; transition: color .2s ease; }
-.links a:hover, .links a.active { color: var(--ted-red); text-decoration: underline; text-underline-offset: 6px; }
+.links a { position: relative; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--ted-navy); font-weight: 600; white-space: nowrap; transition: color .3s cubic-bezier(0.22, 1, 0.36, 1); }
+/* Underline draws in from the left on hover and wipes out to the right on leave */
+.links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 2px; background: var(--ted-red); border-radius: 2px; transform: scaleX(0); transform-origin: right; transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
+.links a.active { color: var(--ted-red); }
+.links a.active::after { transform: scaleX(1); }
+.links a:focus-visible { color: var(--ted-red); outline-offset: 4px; }
+@media (hover: hover) {
+  .links a:hover { color: var(--ted-red); }
+  .links a:hover::after { transform: scaleX(1); transform-origin: left; }
+}
+@media (prefers-reduced-motion: reduce) { .links a, .links a::after { transition: none; } }
 .mobileMenu { display: none; }
 @media (max-width: 1023px) {
   .navbar { padding-block: .5rem; }
