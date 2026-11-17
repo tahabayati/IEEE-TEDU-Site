@@ -104,7 +104,7 @@ export async function deleteYearAction(form) {
 }
 
 // Load a year, let `edit` change it, save board+groups back. `edit` returns an error string or nothing.
-// shortcut: read-modify-write, last save wins if two admins edit the same year at once.
+// Read, change, write back: if two admins edit the same year at once, the last save wins.
 async function editYear(form, edit) {
   const db = await guard();
   const years = db.collection("team_years");

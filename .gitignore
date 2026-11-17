@@ -5,3 +5,5 @@ out/
 .vercel/
 .env*
 !.env.example
+
+AGENTS.md

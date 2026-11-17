@@ -69,7 +69,7 @@ export async function savePostAction(form) {
     publish();
     to(here, fields.published ? "Kaydedildi ve sitede yayında." : "Taslak olarak kaydedildi.");
   }
-  // shortcut: slug check then insert can race; the unique index makes the loser fail loudly. Fine for a few admins.
+  // Two posts saved at the same moment can race on the slug; the unique index makes one of them fail. Fine for a few admins.
   const { insertedId } = await posts.insertOne({
     coverKey: null, ...fields, slug: await freeSlug(posts, title), createdAt: new Date(),
   });

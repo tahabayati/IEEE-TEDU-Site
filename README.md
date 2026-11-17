@@ -1,26 +1,28 @@
 # IEEE TEDU Website
 
-Website of the IEEE Student Branch at TED University, with an admin panel for the team.
+Website of the IEEE Student Branch at TED University, with an admin panel for managing the team, the blog and contact messages.
 
-Built with Next.js (App Router) and JavaScript. Team data is stored in MongoDB and team photos in a Backblaze B2 bucket.
+Built with Next.js (App Router). Data is in MongoDB, images are in a Backblaze B2 bucket.
 
-## Version 1
-
-The first version of this website was designed and built by [Ömer Harmankaya](https://github.com/OmerHarmankayaC):
-[OmerHarmankayaC/IEEE-WebSite](https://github.com/OmerHarmankayaC/IEEE-WebSite).
-This version moves it to Next.js and retains the original IEEE palette, typography and content, with responsive layouts for phones and tablets.
+The first version of the site was designed and built by [Ömer Harmankaya](https://github.com/OmerHarmankayaC): [OmerHarmankayaC/IEEE-WebSite](https://github.com/OmerHarmankayaC/IEEE-WebSite). This version moves it to Next.js and keeps the original palette, fonts and content.
 
 ## Running locally
 
-Requires Node.js 20.9 or newer.
+Needs Node.js 20.9 or newer.
 
 ```bash
 npm install
-cp .env.example .env   # then fill in the values
+cp .env.example .env   # fill in the values
 npm run dev
 ```
 
-Open http://localhost:3000. `npm run check:services` checks that MongoDB and the B2 bucket are reachable with your `.env` values (read-only).
+Open http://localhost:3000.
+
+Other scripts:
+
+- `npm run lint` runs ESLint.
+- `npm run check:services` checks that MongoDB and the B2 bucket can be reached (read-only).
+- `npm run seed:blog` adds the first five blog posts to an empty database. It is safe to run twice.
 
 ## Environment variables
 
@@ -28,62 +30,49 @@ Open http://localhost:3000. `npm run check:services` checks that MongoDB and the
 | --- | --- |
 | `MONGODB_URI` | MongoDB connection string |
 | `MONGODB_DB` | Database name |
-| `B2_S3_ENDPOINT` | S3 endpoint from the bucket details, e.g. `https://s3.eu-central-003.backblazeb2.com` |
+| `B2_S3_ENDPOINT` | S3 endpoint of the bucket, e.g. `https://s3.eu-central-003.backblazeb2.com` |
 | `B2_S3_REGION` | Region from that endpoint, e.g. `eu-central-003` |
 | `B2_BUCKET_NAME` | Bucket name |
 | `B2_APPLICATION_KEY_ID` | Application key ID |
 | `B2_APPLICATION_KEY` | Application key |
 
-All of them are server-only. Never commit `.env`.
+All are server-only. Do not commit `.env`.
 
 ## Project structure
 
-- `app/page.js`: home page, built from the sections in `app/components/`.
-- `app/blog`, `app/blog-*`: blog list and posts. Posts use `components/BlogArticle.js`.
-- `app/contact`: contact page.
-- `app/admin`: admin panel and login.
-- `app/media/[...key]`: serves team photos from the private bucket, cached by Vercel's CDN.
-- `app/components/site-interactions.js`: scroll animations, carousels and tabs. It finds elements by `id` or `data-*` attributes, because CSS module class names change at build time.
-- `lib/`: database, bucket, team data and admin login code.
+- `app/page.js`: home page, built from `app/components/`.
+- `app/blog`: blog list and posts, read from the database.
+- `app/contact`: contact form. Messages are saved to the database.
+- `app/admin`: admin panel (team, blog, messages, admins).
+- `app/media/[...key]`: serves images from the private bucket.
+- `app/components/site-interactions.js`: scroll animations, carousels and tabs. It finds elements by `id` or `data-*` attributes because CSS module class names change at build time.
+- `lib/`: database, bucket, login and data helpers.
 
-Each component has its own `.module.css`. `app/globals.css` only has colors, fonts and a few shared classes (`.container`, `.btn`, `.section-title`, `.reveal`).
+Each component has its own `.module.css`. `app/globals.css` holds colors, fonts and a few shared classes.
 
-## Team data
+## Data
 
-- `people` collection: one document per person (`name`, `linkedin`, `photoKey`).
-- `team_years` collection: one document per year, e.g. `2025-2026`, with the board and groups. Only years with `published: true` are shown on the site.
+Collections: `people`, `team_years`, `posts`, `messages`, `admins`, `admin_sessions`.
 
-The home page is rebuilt at most once an hour, so database changes can take up to an hour to show.
+Only years with `published: true` and posts with `published: true` appear on the site. The public pages refresh at most once an hour, and the admin panel refreshes them right after each change.
 
-## Admin panel (`/admin`)
+## Admin panel
 
-There are two roles, `chief` and `admin`. Only the chief can add, edit and remove admins. Logins last 7 days.
+Open `/admin`. There are two roles: `chief` can manage other admins, `admin` can manage everything else. Logins last 7 days, and 5 wrong passwords block an IP for about 10 minutes.
 
 To create the chief account:
 
-1. Run `npm run hash-password` and type the password. Copy the printed `passwordHash`.
-2. In MongoDB Compass, add a document to the `admins` collection:
+1. Run `npm run hash-password` and type a password. Copy the printed hash.
+2. In the `admins` collection add:
    ```json
    { "username": "chief", "role": "chief", "passwordHash": "scrypt:..." }
    ```
-   Usernames are 3-32 characters: letters, digits, `.`, `_`, `-`.
 3. Log in at `/admin/login`.
 
-The password itself is never stored. To reset it, repeat step 1 and replace `passwordHash`.
+To reset a password, repeat step 1 and replace `passwordHash`.
 
 ## Deploying on Vercel
 
-1. Import the repository in Vercel (Next.js preset, default settings).
-2. Add the environment variables above before the first deploy. The build reads team data from the database.
-3. In MongoDB Atlas, allow connections from anywhere (`0.0.0.0/0`) under Network Access, since Vercel has no fixed IP addresses.
-
-## Responsive behavior
-
-- Below 1024px, the full navigation opens from “Menü”; it closes after selecting a link, clicking outside or pressing Escape.
-- Committee cards use native disclosures for touch and keyboard access. Below 1024px, CS/RAS/WIE buttons select a committee; without JavaScript, all three cards remain available.
-- Activities and team members scroll horizontally with snap points. Mobile cards retain readable widths instead of squeezing every person into one row.
-- Team leaders use a two-column layout on phones and tablets. Group buttons support keyboard activation and expose their selected state.
-- The hero action remains available on phones. The blog list, all five articles and contact form share responsive spacing and readable input sizes.
-- Content is visible before JavaScript loads. Scroll entrances respect reduced motion, and anchor links account for the fixed header.
-
-Validation notes are in [docs/responsive-review.md](docs/responsive-review.md).
+1. Import the repository (Next.js preset).
+2. Add the environment variables before the first deploy.
+3. In MongoDB Atlas, allow connections from anywhere (`0.0.0.0/0`) under Network Access, because Vercel has no fixed IP.
