@@ -1,0 +1,100 @@
+/* Site-wide only: theme variables, reset, base typography and a few shared helpers.
+   Everything else lives next to its component in a *.module.css file. */
+
+:root {
+  /* IEEE theme */
+  --ted-navy: #002855; /* IEEE Navy */
+  --ted-red: #00629b; /* IEEE Blue */
+  /* Original TEDU colors, for easy reversal:
+     --ted-navy: #040914;
+     --ted-red: #C8102E; */
+
+  --bg-light: #f6f6f8;
+  --text-dark: #121212;
+  --text-muted: #555555;
+  --white: #ffffff;
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-body:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+/* Shared helpers */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background-color: var(--ted-red);
+  color: var(--white);
+  border: 2px solid var(--ted-red);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--ted-red);
+}
+
+/* Scroll-in animation: site-interactions.js adds .visible when the element enters the screen. */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

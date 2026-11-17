@@ -1,0 +1,444 @@
+.team {
+  padding: 8rem 0;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.title {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Year switcher ---------- */
+.yearSwitcher {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.yearButton {
+  background: transparent;
+  border: 2px solid var(--ted-navy);
+  color: var(--ted-navy);
+  padding: 0.5rem 1.5rem;
+  font-family: "Lora", serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yearButton:hover {
+  background: rgba(18, 30, 48, 0.1);
+}
+
+.yearButton[data-active] {
+  background: var(--ted-navy);
+  color: var(--white);
+}
+
+/* One per year; the hidden attribute shows/hides it, the script fades it */
+.yearPanel {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* ---------- President and vice president ---------- */
+.board {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 8vw, 6rem);
+  margin-bottom: 6rem;
+  flex-wrap: wrap;
+}
+
+.president {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.presidentPhoto {
+  position: relative;
+  width: clamp(220px, 20vw, 280px);
+  max-width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.noPhoto {
+  background-color: var(--ted-navy);
+}
+
+.presidentName {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--ted-navy);
+  text-transform: capitalize;
+}
+
+.presidentRole {
+  color: var(--ted-red);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Group tabs (leader photo + group name) ---------- */
+.tabsContainer {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto 6rem auto;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  align-items: end;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.leader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.leaderPhoto {
+  position: relative;
+  width: 220px; /* explicit width so an empty placeholder does not collapse */
+  max-width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 15px;
+  background-color: rgba(4, 9, 20, 0.05);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leaderName {
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--ted-navy);
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.tabBox {
+  width: 100%;
+  background: transparent;
+  border-top: 2px solid rgba(4, 9, 20, 0.1);
+  border-bottom: 2px solid rgba(4, 9, 20, 0.1);
+  border-left: 1px solid rgba(4, 9, 20, 0.1);
+  border-right: 1px solid rgba(4, 9, 20, 0.1);
+  padding: 0.8rem;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.tab:first-child .tabBox {
+  border-left: 2px solid rgba(4, 9, 20, 0.1);
+}
+
+.tab:last-child .tabBox {
+  border-right: 2px solid rgba(4, 9, 20, 0.1);
+}
+
+.tabName {
+  background: transparent;
+  color: var(--ted-navy);
+  border: none;
+  font-size: 1.8rem;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  pointer-events: none;
+  text-transform: uppercase;
+  padding: 0;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.tab:hover .leader,
+.tab:hover .tabName {
+  opacity: 0.8;
+}
+
+.tab[data-active] .leader,
+.tab[data-active] .tabName {
+  opacity: 1;
+}
+
+.tab[data-active] .tabBox {
+  background: rgba(4, 9, 20, 0.05);
+}
+
+/* Small arrow under the active tab */
+.tab[data-active] .tabBox::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px 15px 0 15px;
+  border-style: solid;
+  border-color: var(--ted-red) transparent transparent transparent;
+}
+
+/* ---------- Member carousels ---------- */
+.carousels {
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Centered when the cards fit; scrolls sideways (arrows via the script) when a group overflows. */
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  padding: 0 5vw 4rem 5vw;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 5vw;
+  scrollbar-width: none;
+  background-color: #ffffff;
+}
+
+.carousel:not([data-active]) {
+  display: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Auto margins center the row without clipping its start when it overflows */
+.card:first-child {
+  margin-left: auto;
+}
+.card:last-child {
+  margin-right: auto;
+}
+
+.card {
+  flex: 0 0 clamp(200px, 20vw, 260px);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.cardPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(4, 9, 20, 0.1);
+  background-color: #d0e4ff; /* placeholder color */
+}
+
+.cardContent {
+  padding: 1.5rem 0 0 0;
+  text-align: center;
+}
+
+.cardName {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: var(--ted-navy);
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+
+/* Prev / next arrows */
+.navButton {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background-color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--ted-navy);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.navButton:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* ---------- LinkedIn badge on photos ---------- */
+.linkedin {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: #0077b5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+  z-index: 10;
+}
+
+.linkedin:hover {
+  transform: scale(1.15);
+  background: #006097;
+}
+
+.linkedin svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .carousel {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tabs {
+    gap: 0;
+  }
+
+  .leaderPhoto {
+    width: 60px;
+    height: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .leaderName {
+    font-size: 0.85rem;
+    line-height: 1.2;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 0 0.2rem;
+    height: 2em; /* keeps the tabs aligned when names wrap */
+  }
+
+  .leader {
+    margin-bottom: 1rem;
+  }
+
+  .tabName {
+    font-size: 0.9rem;
+  }
+
+  .tabBox {
+    padding: 0.4rem 0.1rem;
+  }
+
+  .board {
+    flex-wrap: nowrap;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+
+  .presidentPhoto {
+    width: 140px;
+    height: 175px;
+    margin-bottom: 0.8rem;
+  }
+
+  .presidentName {
+    font-size: 1.1rem;
+  }
+
+  .presidentRole {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* All cards of a group squeeze into one row on phones */
+  .carousel {
+    gap: 0.8rem;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    justify-content: flex-start;
+    overflow-x: hidden;
+  }
+  .card {
+    flex: 1 1 0px;
+    min-width: 0;
+  }
+  .cardPhoto {
+    border-radius: 10px;
+  }
+  .linkedin {
+    width: 24px;
+    height: 24px;
+    bottom: 8px;
+    right: 8px;
+  }
+  .linkedin svg {
+    width: 14px;
+    height: 14px;
+  }
+}

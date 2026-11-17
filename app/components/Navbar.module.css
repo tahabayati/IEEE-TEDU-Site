@@ -1,0 +1,118 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 5%;
+  background: rgba(246, 246, 248, 0.9);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* data-scrolled is set by site-interactions.js once the page scrolls */
+.navbar[data-scrolled] {
+  padding: 0.6rem 5%;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.logo {
+  height: 115px;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1);
+  transition: height 0.3s ease;
+}
+
+.navbar[data-scrolled] .logo {
+  height: 90px;
+}
+
+.mobileLinks {
+  display: none;
+  gap: 1.5rem;
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+
+.mobileLinks a {
+  text-decoration: none;
+  color: var(--ted-navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+.mobileLinks a:hover {
+  color: var(--ted-red);
+}
+
+.links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ted-red);
+  transition: width 0.3s ease;
+}
+
+.links a:hover::after {
+  width: 100%;
+}
+
+/* The link of the page you are on */
+.links a.active {
+  border-bottom: 2px solid var(--ted-red);
+}
+
+@media (max-width: 900px) {
+  .navbar,
+  .navbar[data-scrolled] {
+    padding: 0.6rem 5%;
+  }
+  .logo,
+  .navbar[data-scrolled] .logo {
+    height: 50px;
+  }
+  .links {
+    display: none;
+  }
+  .mobileLinks {
+    display: flex;
+  }
+}

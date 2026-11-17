@@ -1,0 +1,147 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-light);
+  padding: 10rem 2rem 5rem 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 4rem;
+  box-shadow: 0 20px 50px rgba(4, 9, 20, 0.05);
+  border: 1px solid rgba(4, 9, 20, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-heading);
+  color: var(--ted-navy);
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--ted-navy);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.group {
+  margin-bottom: 2rem;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  color: var(--ted-navy);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.input {
+  width: 100%;
+  background: #f8f9fa;
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--ted-navy);
+  transition: all 0.3s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ted-red);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
+}
+
+textarea.input {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submit {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.backLink {
+  position: absolute;
+  top: 40px;
+  left: 5vw;
+  color: var(--ted-navy);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.backLink:hover {
+  color: var(--ted-red);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 6rem 1.5rem 3rem 1.5rem;
+    align-items: flex-start;
+  }
+  .container {
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+  }
+  .header {
+    margin-bottom: 2rem;
+  }
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .group {
+    margin-bottom: 1.5rem;
+  }
+  .label {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  .input {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+  .backLink {
+    top: 20px;
+    left: 1.5rem;
+    font-size: 0.8rem;
+    z-index: 10;
+  }
+  .submit {
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+}

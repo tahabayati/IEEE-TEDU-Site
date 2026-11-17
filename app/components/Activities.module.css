@@ -1,0 +1,129 @@
+.activities {
+  position: relative;
+  padding: 10rem 0 6rem 0;
+  overflow: hidden;
+  background-color: var(--ted-navy);
+  color: var(--white);
+}
+
+.track {
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 2rem 5%;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 380px;
+  aspect-ratio: 0.85;
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-dark);
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Card colors */
+.peach { background-color: #fbe4d8; }
+.blue { background-color: #d4e6f1; }
+.purple { background-color: #e8daef; }
+.green { background-color: #d8f7d1; }
+.pink { background-color: #f7d1d1; }
+
+.arrowIcon {
+  align-self: flex-end;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.card:hover .arrowIcon {
+  opacity: 1;
+}
+
+.content {
+  text-align: left;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Prev / next buttons (shown and hidden by site-interactions.js) */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background-color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ted-navy);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 85%;
+    padding: 2rem;
+  }
+  .navButton {
+    display: none;
+  }
+}

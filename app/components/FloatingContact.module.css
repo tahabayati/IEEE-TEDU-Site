@@ -1,0 +1,74 @@
+.button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--ted-navy);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(4, 9, 20, 0.2);
+  text-decoration: none;
+  z-index: 9999;
+  overflow: hidden; /* enables the white slide-in background */
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.3s;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  background: var(--white);
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.button:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.4s ease-in-out;
+  position: relative;
+  z-index: 10;
+}
+
+/* site-interactions.js sets data-dark over dark sections and data-hidden near the top of the page */
+.button[data-dark]::before {
+  width: 100%;
+}
+.button[data-dark] {
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+}
+.button[data-dark] .title {
+  color: var(--ted-navy);
+}
+.button[data-hidden] {
+  opacity: 0 !important; /* beats the .reveal animation */
+  pointer-events: none;
+  transform: translateY(150px) !important;
+}
+
+@media (max-width: 768px) {
+  .button {
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+}

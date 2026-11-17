@@ -1,0 +1,233 @@
+.committees {
+  padding: 10rem 0;
+  background-color: var(--bg-light);
+}
+
+/* Wider than the standard .container */
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Mobile-only tab switcher (CS / RAS / WIE) */
+.switcher {
+  display: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  max-width: 1600px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.85;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: filter 0.6s ease;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  mix-blend-mode: multiply;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.02));
+  transition: all 0.6s ease;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ted-navy);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+  transition: color 0.4s ease;
+}
+
+.iconWrap {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+/* A plus sign drawn with two bars; turns into a minus on hover */
+.plus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 3px;
+  background-color: var(--ted-navy);
+  transform: translate(-50%, -50%);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.plus::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--ted-navy);
+  transform: rotate(90deg);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.description {
+  margin-top: 2.5rem;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.description::-webkit-scrollbar {
+  display: none;
+}
+
+.description p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* Hover: blur the logo and show the description */
+.card:hover .logo {
+  filter: blur(12px) brightness(0.7);
+}
+.card:hover .overlay {
+  background: rgba(0, 40, 85, 0.85);
+  backdrop-filter: blur(4px);
+}
+.card:hover .title {
+  color: var(--white);
+}
+.card:hover .plus {
+  background-color: var(--white);
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+.card:hover .plus::before {
+  background-color: var(--white);
+  transform: rotate(0deg);
+}
+.card:hover .description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop: all three cards in one row */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet and mobile: one card at a time, picked with the switcher */
+@media (max-width: 1023px) {
+  .wrapper {
+    display: none;
+  }
+  .wrapper[data-active] {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .switcher {
+    display: block;
+    width: fit-content;
+    margin: 0.5rem auto 1.2rem auto;
+    padding: 0.4rem 0.4rem 1rem;
+    background: rgba(4, 9, 20, 0.04);
+    border-radius: 50px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .tab {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--ted-navy);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .tab[data-active] {
+    background: var(--white);
+    box-shadow: 0 4px 10px rgba(4, 9, 20, 0.08);
+    opacity: 1;
+  }
+
+  .wrapper[data-active] {
+    animation: fadeIn 0.5s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

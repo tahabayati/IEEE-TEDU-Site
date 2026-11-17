@@ -1,0 +1,85 @@
+/* Shared by every /admin page */
+.admin {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  font-family: var(--font-sans);
+  color: var(--text-dark);
+}
+
+.admin h1 {
+  color: var(--ted-navy);
+  margin-bottom: 1.5rem;
+}
+
+.admin h2 {
+  color: var(--ted-navy);
+  margin: 2rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.admin form {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.admin label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.admin input,
+.admin textarea {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.admin button {
+  padding: 0.55rem 1rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ted-navy);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  justify-self: start;
+}
+
+.admin button.danger {
+  background: #b3261e;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.msg {
+  background: #eef4fb;
+  border-left: 4px solid var(--ted-navy);
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.deleteForm {
+  margin-top: 0.6rem;
+}

@@ -1,0 +1,122 @@
+.footer {
+  padding: 8rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ted-navy);
+  color: var(--white);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.joinText {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.8;
+  margin-left: -0.05em;
+  margin-bottom: 4rem;
+}
+
+.accent {
+  color: var(--ted-red);
+}
+
+.links {
+  display: flex;
+  gap: 4rem;
+  margin-top: 1rem;
+  flex: 1;
+  max-width: 600px;
+}
+
+.instagramGroup {
+  flex: 1.5;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contactGroup {
+  margin-top: -1rem;
+}
+
+.group h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.group ul {
+  list-style: none;
+}
+
+.group li {
+  margin-bottom: 1rem;
+}
+
+.group li + li {
+  margin-top: 0.5rem;
+}
+
+.group a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.group a:hover {
+  color: var(--ted-red);
+}
+
+.icon {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.bottom {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+  .top {
+    flex-direction: column;
+  }
+  .links {
+    flex-direction: column;
+  }
+  .joinText {
+    font-size: clamp(2.5rem, 9vw, 3.8rem);
+    margin-bottom: 1.5rem;
+  }
+  .group h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .group a {
+    font-size: 0.95rem;
+  }
+  .bottom {
+    margin-top: 3rem;
+  }
+}
