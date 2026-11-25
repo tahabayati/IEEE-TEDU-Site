@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const INSTAGRAM = [
@@ -82,6 +83,7 @@ export default function Footer() {
         </div>
         <div className={styles.bottom}>
           <p>© 2026 IEEE TEDU Student Society. Tüm hakları saklıdır.</p>
+          <Link href="/workshops">Atölyeler</Link>
         </div>
       </div>
     </footer>

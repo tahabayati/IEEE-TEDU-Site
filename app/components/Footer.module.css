@@ -92,11 +92,15 @@
 }
 
 .bottom {
-  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.9rem;
-  opacity: 0.5;
 }
+.bottom a { color: rgb(255 255 255 / .7); text-underline-offset: .2em; }
+.bottom a:hover, .bottom a:focus-visible { color: var(--white); }
 
 @media (max-width: 900px) {
   .top {
@@ -149,5 +153,5 @@
   .group a:active { color: var(--ted-red); }
   .group a:active::after { transform: translate(2px, -2px); color: var(--ted-red); }
   .icon { flex-shrink: 0; width: 24px; height: 24px; margin-right: 16px; stroke-linecap: round; stroke-linejoin: round; }
-  .bottom { margin-top: 1rem; font-size: .8rem; text-align: center; }
+  .bottom { flex-direction: column; margin-top: 1rem; font-size: .8rem; text-align: center; }
 }
