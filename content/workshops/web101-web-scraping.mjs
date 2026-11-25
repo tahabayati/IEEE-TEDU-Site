@@ -13,6 +13,7 @@
 const workshop = {
   slug: "web101-web-scraping",
   title: "Web 101 & Etik Web Scraping",
+  presentationUrl: "https://web101-webscrape-ieee-workshop.vercel.app/",
   organizer: "IEEE TEDU Computer Society",
   summary:
     "Web'in nasıl çalıştığına ve herkese açık web verilerini Python ile sorumlu bir şekilde nasıl toplayacağımıza uygulamalı bir giriş. Tarayıcında gerçek HTTP isteklerini inceleyecek, HTML okuyacak ve adım adım küçük bir scraper yazacaksın.",

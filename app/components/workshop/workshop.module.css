@@ -7,6 +7,9 @@
 .noCaps { text-transform: none; letter-spacing: 0; font-size: .95rem; }
 .hero h1 { color: var(--ted-navy); font-size: clamp(2.2rem, 5.5vw, 4rem); line-height: 1.08; }
 .titleRow { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+.presentationLink { display: inline-flex; align-items: center; min-height: 44px; margin-top: 1rem; padding: .5rem 1.25rem; border-radius: 99px; background: var(--ted-red); color: var(--white); font-weight: 600; text-decoration: none; }
+.presentationLink:hover { background: var(--ted-navy); }
+.presentationLink:focus-visible { outline: 3px solid var(--ted-navy); outline-offset: 3px; }
 .lead { max-width: 60ch; font-size: 1.15rem; color: var(--text-muted); }
 .muted { color: var(--text-muted); }
 .meta { color: var(--text-muted); font-size: .9rem; }
